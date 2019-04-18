@@ -25,8 +25,8 @@ public class HandleRequest {
      * @return the response body
      */
     public static Response get(final String endPoint) throws UnsupportedEncodingException, CloneNotSupportedException, NoSuchAlgorithmException {
-        return given().spec(REQUEST).log().method()
-                .when().log().method()
+        return given().spec(REQUEST).log().all()
+                .when().log().all()
                 .get(endPoint);
     }
 
