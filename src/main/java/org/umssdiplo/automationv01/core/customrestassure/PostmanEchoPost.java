@@ -1,9 +1,6 @@
 package org.umssdiplo.automationv01.core.customrestassure;
 
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.config.EncoderConfig;
-import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
 
@@ -12,16 +9,16 @@ import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
  * @author <a href="mailto:luis.marcelo.garay@gmail.com">Marcelo Garay</a>
  * @version 1.0
  */
-public class PostmanEcho implements IEndPoint {
+public class PostmanEchoPost implements IEndPoint {
 
-    private static PostmanEcho instance = new PostmanEcho();
+    private static PostmanEchoPost instance = new PostmanEchoPost();
     private RequestSpecification requestSpecification;
 
-    private PostmanEcho() {
+    private PostmanEchoPost() {
         initializeRequestSpecification();
     }
 
-    public static PostmanEcho getInstance() {
+    public static PostmanEchoPost getInstance() {
         return instance;
     }
 
@@ -29,7 +26,7 @@ public class PostmanEcho implements IEndPoint {
     public void initializeRequestSpecification() {
         requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(PropertyAccessor.getInstance().getBaseUri())
-                .addHeader("my-sample-header",  "Lorem ipsum dolor sit amet")
+                .setBody("diplomado testing")
                 .build();
     }
 

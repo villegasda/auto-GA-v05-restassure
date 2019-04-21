@@ -1,6 +1,5 @@
 package org.umssdiplo.automationv01.stepdefinitionproject;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import io.restassured.response.Response;
@@ -27,13 +26,12 @@ public class PostManStepdefs {
 
     @Then("^the responde 'data' value is \"([^\"]*)\"$")
     public void theRespondeDataValueIs(String esperado) throws Throwable {
-        String actual = response.getDataValue();
-
+        String actual = response.getBody().jsonPath().getString("data");
         Assert.assertEquals(esperado, actual);
     }
 
     @Given("^POST \"([^\"]*)\" postman endpoint is configured$")
     public void postPostmanEndpointIsConfigured(String arg0) throws Throwable {
-
+        response = HandleRequest.post(arg0);
     }
 }
